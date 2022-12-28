@@ -1,4 +1,4 @@
-name: "resolucoes2"
+name: "csv-json"
 
 on:
 schedule:
@@ -15,7 +15,7 @@ uses: actions/checkout@v2
   run: apt-get install wget -y
 
 - name: Download .csv and .json files
-  run: wget -r -nd -A .csv,.json https://sistemas.anac.gov.br/dadosabertos/normas-homol/regulamentacao/Normas%20Publicadas/resolucoes/
+  run: wget -r -nd -A .csv,.json https://github.com/gabrielmacedoanac/flat-data-anac
 
 - name: Upload files to repository
   uses: actions/upload-artifact@v2
