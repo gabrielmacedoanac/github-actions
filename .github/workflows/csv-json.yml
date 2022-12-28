@@ -21,8 +21,3 @@ jobs:
       - name: Download .csv and .json files
         run: wget -r -nd -A .csv,.json https://github.com/gabrielmacedoanac/flat-data-anac
         
-      - name: Upload files to repository
-        uses: actions/upload-artifact@v2
-          with:
-            name: csv-json
-            path: .
