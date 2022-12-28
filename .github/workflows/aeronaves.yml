@@ -20,9 +20,3 @@ jobs:
         cp $file /data/
         fi
         done
-    - name: Upload updated files
-    
-    - uses: actions/upload-artifact@v2
-      with:
-        name: updated-files
-        path: /data/
