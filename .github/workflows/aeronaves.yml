@@ -1,4 +1,4 @@
-name: Download CSV files
+name: aeronaves.csv
 
 on: [push]
 
@@ -10,4 +10,4 @@ jobs:
     - name: Download CSV files
       run: |
         mkdir -p data
-        wget -r -np -nH --cut-dirs=3 -A .csv https://sistemas.anac.gov.br/dadosabertos/regulamentacao/Normas%20Publicadas/resolucoes/ -P data
+        wget -r -np -nH --cut-dirs=3 -A .csv https://raw.githubusercontent.com/gabrielmacedoanac/flat-data-anac/main/aeronaves.csv -P data
