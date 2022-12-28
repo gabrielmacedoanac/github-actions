@@ -1,15 +1,12 @@
 name: "csv-json"
 
-on:
+on: [push]
 schedule:
 - cron: "0 0-5 * * *"
-
-jobs:
-download-files:
 runs-on: ubuntu-latest
 steps:
 - name: Checkout repository
-uses: actions/checkout@v2
+  uses: actions/checkout@v2
 
 - name: Install wget
   run: apt-get install wget -y
