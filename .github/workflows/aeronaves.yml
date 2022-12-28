@@ -9,6 +9,20 @@ jobs:
     - uses: actions/checkout@v2
     - name: Aeronaves
       run: |
-        mkdir -p data
-        wget -r -np -nH --cut-dirs=3 -A .csv https://raw.githubusercontent.com/gabrielmacedoanac/flat-data-anac/main/aeronaves.csv -P data
-        wget -r -np -nH --cut-dirs=3 -A .csv https://raw.githubusercontent.com/gabrielmacedoanac/flat-data-anac/main/drones.csv -P data
+        mkdir -p /data/
+        wget -r -np -nH --cut-dirs=3 -A .csv https://raw.githubusercontent.com/gabrielmacedoanac/flat-data-anac/main/aeronaves.csv -P /data/
+        wget -r -np -nH --cut-dirs=3 -A .csv https://raw.githubusercontent.com/gabrielmacedoanac/flat-data-anac/main/drones.csv -P /data/
+
+    - name: Check for file changes
+      run: |
+        for file in /data/*; do
+        if [[ $(sha256sum $file | awk '{print $1}') != $(cat /.sha256sums/$file | awk '{print $1}') ]]; then
+        cp $file /data/
+        fi
+        done
+    - name: Upload updated files
+    
+    - uses: actions/upload-artifact@v2
+      with:
+        name: updated-files
+        path: /data/
